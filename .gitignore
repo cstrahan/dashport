@@ -1,0 +1,6 @@
+# Build output
+dist/
+
+# Python venv and prototyping scripts
+.venv/
+/local/
