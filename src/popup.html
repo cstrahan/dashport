@@ -134,6 +134,25 @@
       font-size: 12px;
       word-break: break-all;
     }
+
+    @media (prefers-color-scheme: dark) {
+      body { background: #1e1e1e; color: #ddd; }
+      .section-label { color: #aaa; }
+      .drop-zone { border-color: #555; color: #999; }
+      .drop-zone:hover, .drop-zone.dragover { border-color: #f60; background: #2a1a00; }
+      .drop-zone.has-file { border-color: #4caf50; background: #1a2e1a; color: #ccc; }
+      textarea { background: #2a2a2a; color: #ddd; border-color: #555; }
+      .or-divider { color: #666; }
+      .btn-import { background: #f60; color: #fff; }
+      .btn-import:hover { background: #e55a00; }
+      .btn-import:disabled { background: #444; color: #777; }
+      .btn-export, .btn-copy { background: #333; color: #ccc; }
+      .btn-export:hover, .btn-copy:hover { background: #444; }
+      .popout-btn { color: #666; }
+      .popout-btn:hover { color: #ccc; background: #333; }
+      .status.success { background: #1a2e1a; color: #6ecf6e; }
+      .status.error { background: #2e1a1a; color: #ef6e6e; }
+    }
   </style>
 </head>
 <body>
