@@ -162,13 +162,23 @@ exportBtn.addEventListener("click", () => {
 // Pop out into a persistent window (useful in Firefox where the popup closes on blur)
 document.getElementById("popoutBtn").addEventListener("click", (e) => {
   e.preventDefault();
-  chrome.windows.create({
-    url: chrome.runtime.getURL("popup.html?window=1"),
-    type: "popup",
-    width: 420,
-    height: 520,
+  const popWidth = 420;
+  const popHeight = 520;
+  chrome.windows.getCurrent((currentWindow) => {
+    // Position near the upper-right corner of the browser window, close to
+    // where the extension toolbar icon (and thus the user's cursor) is.
+    const left = Math.round(currentWindow.left + currentWindow.width - popWidth - 20);
+    const top = currentWindow.top + 80;
+    chrome.windows.create({
+      url: chrome.runtime.getURL("popup.html?window=1"),
+      type: "popup",
+      width: popWidth,
+      height: popHeight,
+      left: left,
+      top: top,
+    });
+    window.close();
   });
-  window.close();
 });
 
 // Copy to clipboard button
