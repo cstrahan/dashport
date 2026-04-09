@@ -1,8 +1,8 @@
 // Popup script - handles file upload, JSON paste, import trigger, and export.
 
-// When opened as a pop-out window, let the body fill the window.
+// When opened as a pop-out window, enable responsive layout.
 if (window.location.search.includes("window=1")) {
-  document.body.style.width = "auto";
+  document.body.classList.add("popout");
 }
 
 const dropZone = document.getElementById("dropZone");

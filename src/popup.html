@@ -4,9 +4,6 @@
   <meta charset="utf-8">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body {
-      height: 100%;
-    }
     body {
       min-width: 300px;
       width: 380px;
@@ -14,9 +11,16 @@
       font-size: 13px;
       color: #1f1f1f;
       padding: 16px;
+    }
+    /* In pop-out mode, fill the window and use flex to stretch the textarea. */
+    body.popout {
+      width: auto;
+      height: 100vh;
       display: flex;
       flex-direction: column;
     }
+    body.popout .section { flex: 1; display: flex; flex-direction: column; }
+    body.popout textarea { flex: 1; }
     h2 {
       font-size: 15px;
       font-weight: 600;
@@ -35,7 +39,7 @@
       border-radius: 4px;
     }
     .popout-btn:hover { color: #555; background: #eee; }
-    .section { margin-bottom: 14px; flex: 1; display: flex; flex-direction: column; }
+    .section { margin-bottom: 14px; }
     .section-label {
       font-size: 11px;
       font-weight: 600;
@@ -65,7 +69,6 @@
     textarea {
       width: 100%;
       min-height: 100px;
-      flex: 1;
       font-family: "SF Mono", Menlo, Monaco, monospace;
       font-size: 11px;
       border: 1px solid #ccc;
