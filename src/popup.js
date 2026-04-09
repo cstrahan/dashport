@@ -1,5 +1,10 @@
 // Popup script - handles file upload, JSON paste, import trigger, and export.
 
+// When opened as a pop-out window, let the body fill the window.
+if (window.location.search.includes("window=1")) {
+  document.body.style.width = "auto";
+}
+
 const dropZone = document.getElementById("dropZone");
 const fileInput = document.getElementById("fileInput");
 const jsonInput = document.getElementById("jsonInput");
@@ -152,6 +157,18 @@ exportBtn.addEventListener("click", () => {
       );
     }
   });
+});
+
+// Pop out into a persistent window (useful in Firefox where the popup closes on blur)
+document.getElementById("popoutBtn").addEventListener("click", (e) => {
+  e.preventDefault();
+  chrome.windows.create({
+    url: chrome.runtime.getURL("popup.html?window=1"),
+    type: "popup",
+    width: 420,
+    height: 520,
+  });
+  window.close();
 });
 
 // Copy to clipboard button
