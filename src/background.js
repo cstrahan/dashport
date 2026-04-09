@@ -10,6 +10,22 @@ const useWebRequestFilter =
   typeof browser.webRequest !== "undefined" &&
   typeof browser.webRequest.filterResponseData === "function";
 
+// Find the active web page tab, skipping extension tabs.
+// Works from both the popup (where lastFocusedWindow is the browser window)
+// and the pop-out (where lastFocusedWindow is the extension window, so we
+// fall back to scanning all normal windows).
+async function getTargetTab() {
+  // Try the last focused window first.
+  let tabs = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
+  let tab = tabs.find((t) => t.url?.startsWith("http"));
+  if (tab) return tab;
+
+  // Fallback: active HTTP tab in any normal window.
+  tabs = await chrome.tabs.query({ active: true, windowType: "normal" });
+  tab = tabs.find((t) => t.url?.startsWith("http"));
+  return tab || null;
+}
+
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === "import-dashboard") {
     handleImport(message.data).then(
@@ -90,7 +106,7 @@ function getDashboardUid(tabUrl) {
 // ---------------------------------------------------------------------------
 
 async function handleImport(importDashboard) {
-  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  const tab = await getTargetTab();
   if (!tab) throw new Error("No active tab");
 
   const pageInfo = await getPageInfo(tab.id);
@@ -199,7 +215,7 @@ async function handleImportFirefox(tab, apiResponse) {
 // ---------------------------------------------------------------------------
 
 async function handleExport() {
-  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  const tab = await getTargetTab();
   if (!tab) return { dashboard: { error: "No active tab" } };
 
   const [{ result }] = await chrome.scripting.executeScript({
