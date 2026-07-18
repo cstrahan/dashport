@@ -69,7 +69,6 @@ build.sh                    Builds dist/chrome/ and dist/firefox/
 |---|---|
 | `activeTab` | Access the current tab to read/inject dashboard state |
 | `scripting` | Run `executeScript` in the page context to read Grafana's scene model |
-| `storage` | Temporarily store import data during page reload |
 | `declarativeNetRequest` (Chrome) | Redirect the dashboard API call to a data URI |
 | `webRequest` + `webRequestBlocking` + `webRequestFilterResponse` (Firefox) | Intercept and rewrite the dashboard API response body |
 | `<all_urls>` (host) | Required because Grafana can be hosted on any domain |

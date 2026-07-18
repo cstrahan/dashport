@@ -4,7 +4,6 @@
   "version": "1.0.0",
   "description": "Third-party extension to import and export Grafana dashboard JSON directly in the browser for preview purposes.",
   "permissions": [
-    "storage",
     "activeTab",
     "scripting",
     "declarativeNetRequest"
