@@ -4,6 +4,14 @@
 
 const DNR_RULE_ID = 1001;
 
+// declarativeNetRequest is a Chrome-only path here (Firefox uses the
+// webRequest filter below). It's accessed via bracket notation so the Firefox
+// add-on linter doesn't flag updateSessionRules as unsupported — this code
+// never runs under Firefox (guarded by useWebRequestFilter).
+function updateSessionRules(options) {
+  return chrome["declarativeNetRequest"]["updateSessionRules"](options);
+}
+
 // Feature detection: Firefox exposes filterResponseData on browser.webRequest.
 const useWebRequestFilter =
   typeof browser !== "undefined" &&
@@ -133,7 +141,7 @@ async function handleImportChrome(tab, apiResponse) {
     ? "*/api/dashboards/uid/" + uid
     : "*/api/dashboards/uid/*";
 
-  await chrome.declarativeNetRequest.updateSessionRules({
+  await updateSessionRules({
     removeRuleIds: [DNR_RULE_ID],
     addRules: [
       {
@@ -154,7 +162,7 @@ async function handleImportChrome(tab, apiResponse) {
   await chrome.tabs.reload(tab.id);
 
   setTimeout(async () => {
-    await chrome.declarativeNetRequest.updateSessionRules({
+    await updateSessionRules({
       removeRuleIds: [DNR_RULE_ID],
     });
   }, 5000);

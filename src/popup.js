@@ -43,7 +43,14 @@ function setDashboard(json, filename) {
 
   if (filename) {
     dropZone.classList.add("has-file");
-    dropZone.innerHTML = '<div class="filename">' + filename + "</div>" + json.title;
+    // Build with the DOM API (not innerHTML) so untrusted filename/title text
+    // can't be interpreted as markup.
+    dropZone.textContent = "";
+    const nameEl = document.createElement("div");
+    nameEl.className = "filename";
+    nameEl.textContent = filename;
+    dropZone.appendChild(nameEl);
+    if (json.title) dropZone.append(json.title);
   }
 }
 
