@@ -1,6 +1,6 @@
-# Grafana Dashboard Import
+# Dashport
 
-A browser extension for Chrome and Firefox that lets you import and export Grafana dashboard JSON directly in the browser.
+Dashport is a browser extension for Chrome and Firefox that lets you import and export Grafana dashboard JSON directly in the browser.
 
 <img src="screenshot.png" alt="Extension popup" width="320">
 

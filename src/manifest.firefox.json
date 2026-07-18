@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Grafana Dashboard Import",
+  "name": "Dashport",
   "version": "1.0.0",
-  "description": "Import dashboard JSON into a Grafana editing session",
+  "description": "Import and export Grafana dashboard JSON directly in the browser.",
   "permissions": [
     "storage",
     "activeTab",
@@ -16,7 +16,7 @@
   ],
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Import Grafana Dashboard",
+    "default_title": "Dashport",
     "default_icon": {
       "16": "icons/icon16.png",
       "48": "icons/icon48.png",
@@ -33,7 +33,7 @@
   },
   "browser_specific_settings": {
     "gecko": {
-      "id": "grafana-dashboard-import@example.com",
+      "id": "dashport@cstrahan.com",
       "strict_min_version": "109.0"
     }
   }
