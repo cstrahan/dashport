@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Dashport",
   "version": "1.0.0",
-  "description": "Import and export Grafana dashboard JSON directly in the browser.",
+  "description": "Third-party extension to import and export Grafana dashboard JSON directly in the browser for preview purposes.",
   "permissions": [
     "storage",
     "activeTab",
