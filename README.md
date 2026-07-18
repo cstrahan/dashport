@@ -79,3 +79,16 @@ build.sh                    Builds dist/chrome/ and dist/firefox/
 - **Dashboard JSON size**: Chrome's `data:` URI redirect has a ~2 MB limit. Most dashboards are well under this.
 - **Grafana Scenes only**: The export feature reads from `window.__grafanaSceneContext`, which requires Grafana 10+ with the Scenes framework. Import (API response replacement) should work with older versions too.
 - **Single dashboard per reload**: The import rule is one-shot and auto-cleans after use.
+
+## License
+
+This project is dual-licensed under either of
+
+- MIT license ([LICENSE-MIT](LICENSE-MIT) or <https://opensource.org/licenses/MIT>)
+- Mozilla Public License, Version 2.0 ([LICENSE-MPL-2.0](LICENSE-MPL-2.0) or <https://www.mozilla.org/MPL/2.0/>)
+
+at your option. `SPDX-License-Identifier: MIT OR MPL-2.0`
+
+Unless you explicitly state otherwise, any contribution intentionally submitted for inclusion in this project by you shall be dual-licensed as above, without any additional terms or conditions.
+
+> This is an unofficial, third-party extension and is not affiliated with or endorsed by Grafana Labs. "Grafana" is a trademark of Grafana Labs.
